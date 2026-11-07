@@ -1,4 +1,4 @@
-# skill-vault
+# stash
 
 **A curated warehouse of AI agent skills, from one builder's real work.**
 
