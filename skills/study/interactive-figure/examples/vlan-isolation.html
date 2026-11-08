@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VLAN Isolation - who can ping whom?</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:24px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  p.hint { color:#94a3b8; margin:0 0 16px; font-size:14px; }
+  .stage { background:#1e293b; border-radius:12px; padding:16px; max-width:840px; }
+  #readout { margin-top:14px; font-size:15px; line-height:1.5; padding:12px 14px; border-radius:8px; background:#0b1220; max-width:840px; box-sizing:border-box; color:#e2e8f0; }
+  .pc { cursor:pointer; }
+  .pc rect.body { fill:#334155; stroke:#64748b; stroke-width:2; }
+  .pc text { fill:#e2e8f0; text-anchor:middle; }
+  .pc .name { font-size:15px; font-weight:700; }
+  .pc .vlan { font-size:12px; fill:#cbd5e1; }
+  .pc.selected rect.body { stroke:#facc15; stroke-width:4; }
+  .pc.reachable rect.body { stroke:#4ade80; stroke-width:4; }
+  .pc.unreachable { opacity:.45; }
+  .pc.unreachable rect.body { stroke:#f87171; stroke-width:3; }
+  .cable { stroke:#64748b; stroke-width:3; }
+  .cable.hot { stroke:#4ade80; }
+  .cable.cold { stroke:#f87171; stroke-dasharray:6 6; }
+  .sw { fill:#1d4ed8; stroke:#93c5fd; stroke-width:2; }
+  .swlabel { fill:#eff6ff; font-size:15px; font-weight:700; text-anchor:middle; }
+  .tag10 { fill:#38bdf8; } .tag20 { fill:#fb923c; }
+  .tag { font-size:12px; font-weight:700; text-anchor:middle; }
+</style>
+</head>
+<body>
+<h1>VLAN isolation: one switch, two VLANs</h1>
+<p class="hint">Click a PC to send a ping from it. Same colour tag = same VLAN.</p>
+<div class="stage">
+  <svg viewBox="0 0 800 460" width="800" height="460" role="img" aria-label="One switch joining four PCs in two VLANs">
+    <!-- cables -->
+    <line class="cable" id="cable-A" x1="130" y1="300" x2="330" y2="150"></line>
+    <line class="cable" id="cable-B" x1="310" y1="300" x2="375" y2="150"></line>
+    <line class="cable" id="cable-C" x1="490" y1="300" x2="425" y2="150"></line>
+    <line class="cable" id="cable-D" x1="670" y1="300" x2="470" y2="150"></line>
+    <!-- switch -->
+    <rect class="sw" x="300" y="90" width="200" height="60" rx="10"></rect>
+    <text class="swlabel" x="400" y="126">SWITCH</text>
+    <!-- PCs -->
+    <g class="pc" id="pc-A" data-name="PC-A" data-vlan="10">
+      <rect class="body" x="60" y="300" width="140" height="90" rx="10"></rect>
+      <text class="name" x="130" y="338">PC-A</text>
+      <text class="vlan" x="130" y="360">192.168.10.11</text>
+      <text class="tag tag10" x="130" y="298"></text>
+    </g>
+    <g class="pc" id="pc-B" data-name="PC-B" data-vlan="10">
+      <rect class="body" x="240" y="300" width="140" height="90" rx="10"></rect>
+      <text class="name" x="310" y="338">PC-B</text>
+      <text class="vlan" x="310" y="360">192.168.10.12</text>
+    </g>
+    <g class="pc" id="pc-C" data-name="PC-C" data-vlan="20">
+      <rect class="body" x="420" y="300" width="140" height="90" rx="10"></rect>
+      <text class="name" x="490" y="338">PC-C</text>
+      <text class="vlan" x="490" y="360">192.168.20.11</text>
+    </g>
+    <g class="pc" id="pc-D" data-name="PC-D" data-vlan="20">
+      <rect class="body" x="600" y="300" width="140" height="90" rx="10"></rect>
+      <text class="name" x="670" y="338">PC-D</text>
+      <text class="vlan" x="670" y="360">192.168.20.12</text>
+    </g>
+    <text class="tag tag10" x="130" y="415">VLAN 10</text>
+    <text class="tag tag10" x="310" y="415">VLAN 10</text>
+    <text class="tag tag20" x="490" y="415">VLAN 20</text>
+    <text class="tag tag20" x="670" y="415">VLAN 20</text>
+  </svg>
+</div>
+<div id="readout">No ping sent yet. Click a PC to send a ping from it.</div>
+<script>
+  var pcs = Array.prototype.slice.call(document.querySelectorAll('.pc'));
+  var readout = document.getElementById('readout');
+  function ping(from) {
+    var fv = from.getAttribute('data-vlan');
+    var fname = from.getAttribute('data-name');
+    var reach = [], unreach = [];
+    pcs.forEach(function (pc) {
+      var cable = document.getElementById('cable-' + pc.id.slice(3));
+      pc.classList.remove('selected', 'reachable', 'unreachable');
+      cable.classList.remove('hot', 'cold');
+      if (pc === from) { pc.classList.add('selected'); return; }
+      if (pc.getAttribute('data-vlan') === fv) {
+        pc.classList.add('reachable'); cable.classList.add('hot');
+        reach.push(pc.getAttribute('data-name'));
+      } else {
+        pc.classList.add('unreachable'); cable.classList.add('cold');
+        unreach.push(pc.getAttribute('data-name') + ' (VLAN ' + pc.getAttribute('data-vlan') + ')');
+      }
+    });
+    var otherVlan = fv === '10' ? '20' : '10';
+    readout.textContent =
+      'Ping from ' + fname + ' (VLAN ' + fv + '): reachable: ' + reach.join(', ') +
+      ' - same VLAN ' + fv + ', the switch forwards the frames directly. Unreachable: ' +
+      unreach.join(', ') + ' - they sit in VLAN ' + otherVlan +
+      ', a different broadcast domain; a switch cannot forward between VLANs, so the ping fails without a router.';
+  }
+  pcs.forEach(function (pc) { pc.addEventListener('click', function () { ping(pc); }); });
+</script>
+</body>
+</html>

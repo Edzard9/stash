@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Interactive Figure Template</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:24px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  p.hint { color:#94a3b8; margin:0 0 16px; font-size:14px; }
+  .stage { background:#1e293b; border-radius:12px; padding:16px; max-width:680px; }
+  #readout { margin-top:14px; font-size:16px; font-weight:600; padding:10px 12px; border-radius:8px; background:#0b1220; max-width:680px; box-sizing:border-box; }
+  #readout.up { color:#4ade80; }
+  #readout.down { color:#f87171; }
+  button { margin-top:12px; font-size:14px; padding:8px 16px; border-radius:8px; border:0; background:#38bdf8; color:#082f49; font-weight:700; cursor:pointer; }
+  .dev { fill:#334155; stroke:#64748b; stroke-width:2; }
+  .devlabel { fill:#e2e8f0; font-size:15px; font-weight:700; text-anchor:middle; }
+  #linkLine { stroke:#4ade80; stroke-width:6; }
+  #linkLine.broken { stroke:#f87171; stroke-dasharray:10 8; }
+  #linkHit { stroke:transparent; stroke-width:26; cursor:pointer; }
+  #breakMark { fill:#f87171; font-size:34px; font-weight:900; text-anchor:middle; display:none; }
+</style>
+</head>
+<body>
+<h1>Generic link figure</h1>
+<p class="hint">Click the link between the devices to break or repair it.</p>
+<div class="stage">
+  <svg viewBox="0 0 640 220" width="640" height="220" role="img" aria-label="Two devices joined by one link">
+    <line id="linkLine" x1="190" y1="110" x2="450" y2="110"></line>
+    <line id="linkHit" x1="190" y1="110" x2="450" y2="110"></line>
+    <rect class="dev" x="60" y="70" width="130" height="80" rx="10"></rect>
+    <text class="devlabel" x="125" y="116">Device A</text>
+    <rect class="dev" x="450" y="70" width="130" height="80" rx="10"></rect>
+    <text class="devlabel" x="515" y="116">Device B</text>
+    <text id="breakMark" x="320" y="100">&#10005;</text>
+  </svg>
+</div>
+<div id="readout" class="up">Link status: UP - traffic is flowing between Device A and Device B.</div>
+<button id="resetBtn" type="button">Reset</button>
+<script>
+  var intact = true;
+  var line = document.getElementById('linkLine');
+  var mark = document.getElementById('breakMark');
+  var readout = document.getElementById('readout');
+  function render() {
+    line.classList.toggle('broken', !intact);
+    mark.style.display = intact ? 'none' : 'block';
+    readout.className = intact ? 'up' : 'down';
+    readout.textContent = intact
+      ? 'Link status: UP - traffic is flowing between Device A and Device B.'
+      : 'Link status: DOWN - the link is broken, no traffic can pass between Device A and Device B.';
+  }
+  document.getElementById('linkHit').addEventListener('click', function () { intact = !intact; render(); });
+  document.getElementById('resetBtn').addEventListener('click', function () { intact = true; render(); });
+  render();
+</script>
+</body>
+</html>
