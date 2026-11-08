@@ -1,0 +1,27 @@
+# Template systemd unit for a small app on a personal VPS.
+# Copy to /etc/systemd/system/<app>.service, adjust the marked lines,
+# then: systemctl daemon-reload && systemctl enable --now <app>
+#
+# The bind rule lives in the APP, not here: the app itself must listen
+# on the tailnet IP only (for example 100.x.x.x), never on 0.0.0.0,
+# unless the owner explicitly decided this service is public.
+
+[Unit]
+Description=<APP NAME> - <one line what it does>
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/projects/<app>
+ExecStart=/usr/bin/node server.js
+# For other runtimes: /usr/bin/python3 app.py, or the built binary path.
+Environment=PORT=<port>
+# Secrets go in an EnvironmentFile with owner-only permissions:
+# EnvironmentFile=/root/projects/<app>/.env
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
