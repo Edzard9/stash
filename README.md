@@ -24,33 +24,61 @@ and follows that skill for you, so you never need to remember skill
 names. Its catalog knows every skill below; when you add a skill to your
 setup, it can only route to the ones you actually installed.
 
+## Also at the top level: council
+
+`skills/council` pressure-tests a hard decision: five advisor lenses
+(Skeptic, Reframer, Opportunist, Operator, Stranger) analyze independently,
+cross-review each other anonymously, and a chairman delivers one verdict
+with its deciding factor and flip condition; when confidence lands at
+medium or better and the winner is something to build, a one-page PRD is
+drafted automatically as the hand-off. Where multiple models are
+callable, each lens can be a genuinely different model instead of one model
+wearing five hats. Written from scratch for this repo, inspired by the LLM
+Council methodology (see the credits inside the skill).
+
+The full flow, start to finish:
+
+```
+prompt -> frame (or mini-PRD for a single idea) -> 5 independent lenses
+-> anonymous cross-review -> chairman verdict + confidence
+-> confidence medium/high and build-shaped? PRD drafted automatically
+-> confidence low? no PRD, only the list of what to resolve first
+-> PRD -> small briefs -> build piece by piece -> ship
+```
+
+The step-by-step explanation lives in `skills/council/README.md`.
+
 ## Catalog
 
-### Video — `skills/video/`
+### Video: `skills/video/`
 
 | Skill | What it does | Proof |
 |---|---|---|
 | `html-video` | Turns a text brief into a rendered MP4: the agent writes one deterministic HTML animation, Playwright captures every frame, FFmpeg encodes it. No video-generation model, no quota, no region lock. | Demo in production |
 
-### Coding — `skills/coding/`
+### Coding: `skills/coding/`
 
-Being stocked. First resident: a concise-code skill from the maintainer's
-own daily setup.
+| Skill | What it does | Proof |
+|---|---|---|
+| `oss-contributor` | Contribute to someone else's repo the way maintainers want: house rules first, a three-layer claim screen (assignees, every comment, related PRs open and closed), mirror the repo's own patterns, honest test reporting that separates baseline failures from regressions, clean PRs, patient follow-up. | Distilled from 11 merged PRs in two days, including a refactor a maintainer then made the enforced lint standard |
 
-### Design — `skills/design/`
+Still being stocked: a concise-code skill from the maintainer's own daily
+setup (`lean-code`, fetched from his machine).
+
+### Design: `skills/design/`
 
 Being stocked. First resident: a UI design skill from the maintainer's own
 daily setup.
 
-### Study — `skills/study/`
+### Study: `skills/study/`
 
 Empty shelf, waiting for its first proven skill.
 
-### Ops — `skills/ops/`
+### Ops: `skills/ops/`
 
 Empty shelf, waiting for its first proven skill.
 
-### Writing — `skills/writing/`
+### Writing: `skills/writing/`
 
 Empty shelf, waiting for its first proven skill.
 
@@ -103,5 +131,5 @@ Soal memakai skill orang lain, repo ini mengikuti empat tingkat: buatan
 sendiri bebas; terinspirasi dan menulis ulang dengan kata sendiri tidak
 perlu izin (tautkan sumbernya sebagai etiket); menyalin hanya dari sumber
 berlisensi permisif (MIT/Apache/BSD) dengan lisensi asli dan kredit
-disertakan; tanpa lisensi yang jelas, jangan salin — cukup tautkan atau
+disertakan; tanpa lisensi yang jelas, jangan salin, cukup tautkan atau
 minta izin pembuatnya. Lisensi repo ini MIT.
