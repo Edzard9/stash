@@ -1,0 +1,12 @@
+Decide how this tool should be built, then spec it. The build itself happens later, by a different agent, from your PRD alone.
+
+The tool is issue #2 for PerkakasID, a bilingual (Indonesian/English) static web-tools site with no build step and no dependencies. Issue text:
+
+"What to build: A GPA calculator with dynamic course rows and an optional cumulative mode that combines previous semesters.
+Scope: Dynamic rows (add/remove): course name (optional), credits/SKS (1-6), letter grade (A=4, AB=3.5, B=3, BC=2.5, C=2, D=1, E=0). Live results: total credits and this semester's GPA. Optional inputs: previous cumulative GPA + previous total credits, producing the combined cumulative GPA.
+Acceptance criteria: two courses (3 SKS A, 2 SKS B) yield GPA 3.60. All values update in real time. Fully bilingual UI; works offline; no dependencies.
+Category key: kuliah. Tool id: kalkulator-ipk."
+
+Repo contract the build must follow (from CONTRIBUTING.md): one tool per file tools/<id>.js, vanilla JS, register with registerTool({id, nama, namaEn, kategori, ikon, deskripsi, deskripsiEn}) on DOMContentLoaded; UI strings follow the active language via a small local string table picked by LANG.aktif; the tool file must be registered in sw.js (BERKAS array) and in index.html above app.js; no em-dash anywhere.
+
+Run the council on the build decisions hidden in this issue (how the cumulative mode should work, what the rows need, what could be overbuilt or underbuilt), deliver the verdict, and if the PRD gate earns it, the PRD the builder will work from.

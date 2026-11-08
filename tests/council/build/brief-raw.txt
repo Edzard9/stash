@@ -1,0 +1,20 @@
+Build the tool specified in the GitHub issue below, completely, in this repository (a static site, no build step). Follow CONTRIBUTING.md in this repo for the tool contract. When done, report what you built and how you verified it against the issue's acceptance criteria. Do not ask questions; make reasonable choices and note them in your report.
+
+--- ISSUE #2: [Tool] Kalkulator IPK dan SKS / GPA Calculator ---
+Labels: tool, good first issue, kategori:kuliah
+
+What to build
+A GPA calculator with dynamic course rows and an optional cumulative mode that combines previous semesters.
+
+Scope
+- Dynamic rows (add/remove): course name (optional), credits/SKS (1-6), letter grade (A=4, AB=3.5, B=3, BC=2.5, C=2, D=1, E=0).
+- Live results: total credits and this semester's GPA.
+- Optional inputs: previous cumulative GPA + previous total credits, producing the combined cumulative GPA.
+
+Acceptance criteria
+- Hand-checked example: two courses (3 SKS A, 2 SKS B) yield GPA 3.60.
+- All values update in real time on any input change.
+- Fully bilingual UI; works offline; no dependencies.
+
+Technical notes
+Follow the tool contract in CONTRIBUTING.md. Category key: "kuliah". Tool id: kalkulator-ipk.
