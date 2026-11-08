@@ -118,8 +118,8 @@ which models sat as advisors and chairman.
 A verdict that stays in the chat evaporates. Convert it:
 
 - **Confidence medium or high, and the winning option is something to
-  build** (a product, feature, or project): immediately draft the PRD,
-  without waiting to be asked. One page, no more. Sections: Problem,
+  build** (a product or feature that will be built and shipped):
+  immediately draft the PRD, without waiting to be asked. One page, no more. Sections: Problem,
   Target user, Decision recap (the verdict, the deciding factor, the flip
   condition), Scope in, Scope out, Core features (numbered, at most 7),
   Constraints, Success criteria. In the single-idea case this step REVISES
@@ -127,9 +127,14 @@ A verdict that stays in the chat evaporates. Convert it:
 - **Confidence low:** do NOT draft a PRD. End with the short list of what
   must be resolved or learned before the decision can carry one. A PRD
   built on a shaky verdict is fiction with headings.
-- **Not build-shaped** (pricing, timing, positioning, a pivot call): skip
-  the PRD, say so in one line, and let the verdict plus its next step be
-  the deliverable.
+- **Not build-shaped** (pricing, timing, positioning, a pivot call):
+  skip the PRD, say so in one line, and let the verdict plus its next
+  step be the deliverable.
+- **A plan of work is not build-shaped.** Contributing to open source, a
+  study plan, a schedule, a learning or hiring commitment: these are
+  projects in the loose sense, but nothing is being built and shipped,
+  so they get NO PRD. The verdict's next step may carry a plain
+  checklist of actions; never label it a PRD or a PRD hand-off.
 
 ### After the PRD: where the chain continues
 
@@ -165,6 +170,13 @@ gate still applies unchanged.
 **Who chooses: the agent does, by rule, the user should never need to
 know the forms exist.** Judge on stakes, reversibility, and blast radius:
 
+- **The floor: lite is the minimum, never zero.** If the request clears
+  the convening bar (a genuine decision with at least two credible
+  options), some form of council ALWAYS runs. "Cheap to reverse" argues
+  for lite, never for skipping the council and deciding directly. Answer
+  directly only for the refuse cases above: a fact, a summary, a
+  production task, or an answer fully determined by a constraint the user
+  stated.
 - Run **lite** when the decision is cheap to reverse, the options are few
   and similar, or an answer is needed fast.
 - Run **full** when being wrong is expensive, the choice is hard to
