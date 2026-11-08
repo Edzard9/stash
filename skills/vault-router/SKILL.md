@@ -36,16 +36,23 @@ skill does it, load that skill, and follow it.
 | `oss-contributor` | A contribution to someone else's repo: screened claim, PR, disclosure | contribute, external PR, good first issue / kontribusi, klaim issue, PR ke repo orang |
 | `small-briefs` | A big build split into small verified briefs for a coding agent | break this down, briefs / pecah tugas, delegasikan, brief untuk opencode |
 | `cloudflare-worker` | Cloudflare Workers + D1 apps and fixes | cloudflare, wrangler, D1, worker / deploy worker, migrasi D1 |
+| `laravel-patterns` | Laravel architecture patterns, adapted from ECC | laravel, eloquent, artisan / pola laravel, bikin fitur laravel |
+| `laravel-security` | Laravel security checklist and hardening, adapted from ECC | laravel security, sanctum, csrf / keamanan laravel, audit keamanan |
+| `react-patterns` | React 18/19 patterns and hooks discipline, adapted from ECC | react, hooks, useEffect / komponen react, state react |
+| `nextjs-turbopack` | Next.js 16+ and Turbopack guidance, adapted from ECC | next.js, turbopack, proxy.ts / next dev lambat |
 | `ui-craft` | UI and interface design work | design, UI, layout, landing page / desain tampilan, bikin UI |
 | `title-card` | Title cards and thumbnails as PNG images | thumbnail, title card, cover image / thumbnail, cover video |
 | `lab-report` | A practicum report in the owner's house format | lab report, practicum / laporan praktikum, hasil pengamatan |
 | `interactive-figure` | A clickable HTML figure for a study concept | interactive diagram, simulation / figur interaktif, diagram bisa diklik, simulasi konsep |
+| `anatomy` | Crafted isometric SVG figures of a concept as a physical object, adapted from wheresryan22/anatomy | isometric figure, svg illustration / figur isometrik, gambar penjelasan |
+| `cisco-ios-patterns` | Cisco IOS review patterns and change windows, adapted from ECC | cisco, ios, access-list / konfigurasi cisco, wildcard mask |
 | `net-lab` | Networking lab configs and validation, module-faithful | VLAN, routing, Packet Tracer, subnet / jarkom, konfigurasi switch, praktikum jaringan |
 | `study-notes` | Study notes and flashcards from slides or PDFs | summarize, flashcards, notes / rangkum materi, catatan belajar, flashcard |
 | `html-video` | A rendered MP4 video from a text brief | video, MP4, shorts, reels, explainer / buatkan video, video penjelasan |
 | `manim-explainer` | Math and science animations in Manim | manim, math animation / animasi matematika, animasi rumus |
 | `vps-deploy` | An app deployed to a VPS: systemd, Tailscale-only, preview | deploy, VPS, server, systemd / deploy ke VPS, online-kan, pasang di server |
 | `repo-audit` | A security audit of the user's own public repos | audit my repos, leaked secrets / audit repo, cek kebocoran, secret bocor |
+| `homelab-vlan-segmentation` | Home network VLAN segmentation, adapted from ECC | home vlan, iot isolation / vlan rumah, pisahkan iot, guest wifi |
 | `caption-craft` | Social media captions and carousel text, ID/EN | caption, carousel, post text / caption IG, teks carousel |
 | `proofread-id` | Formal Indonesian proofreading | proofread, spelling / cek ejaan, rapikan bahasa, periksa tulisan |
 | `council` | A hard decision pressure-tested by five advisor lenses with anonymous cross-review and one synthesized verdict | decide, should I X or Y, which option, pressure-test / pilih yang mana, minta pendapat kedua, uji keputusan, bantu putuskan |
