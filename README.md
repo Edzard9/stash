@@ -48,6 +48,19 @@ prompt -> frame (or mini-PRD for a single idea) -> 5 independent lenses
 
 The step-by-step explanation lives in `skills/council/README.md`.
 
+**Measured, not promised** (full data, raw outputs, and the runnable
+suite: [skills/council/EVIDENCE.md](skills/council/EVIDENCE.md), tests
+in `tests/council/`):
+
+- Decision discipline, 8 cases, same model with and without the skill:
+  0/8 passed raw, **8/8 with the skill**, at 2.4x the decision-stage
+  tokens, about 10k per decision. Comparable multi-agent systems run
+  5-15x at that stage.
+- Full build A/B, one real tool built both ways from the same start:
+  the council + PRD arm used **35.2% fewer tokens end to end**
+  (724,494 vs 1,117,504) at equal measured quality, because the
+  builder needed 16 steps instead of 31.
+
 ## Catalog
 
 ### Video: `skills/video/`
