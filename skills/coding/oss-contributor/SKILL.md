@@ -1,6 +1,6 @@
 ---
 name: oss-contributor
-description: Contribute to someone else's open-source repo the way a maintainer would want: read the house rules first, screen the claim before touching code, mirror the repo's own accepted patterns, test honestly, and open a clean PR. Use when the user wants to contribute to an external repo, claim or fix a GitHub issue that is not theirs, open an external pull request, or says "contribute to", "claim this issue", "fix this upstream", "kontribusi ke repo", "klaim issue ini", "PR ke repo orang". Do NOT use for work in the user's own repos.
+description: Contribute to someone else's open-source repo the way a maintainer would want. Read the house rules first, screen the claim before touching code, mirror the repo's own accepted patterns, test honestly, and open a clean PR. Use when the user wants to contribute to an external repo, claim or fix a GitHub issue that is not theirs, open an external pull request, or says "contribute to", "claim this issue", "fix this upstream", "kontribusi ke repo", "klaim issue ini", "PR ke repo orang". Do NOT use for work in the user's own repos.
 license: MIT
 ---
 
