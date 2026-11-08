@@ -48,6 +48,7 @@ skill does it, load that skill, and follow it.
 | `repo-audit` | A security audit of the user's own public repos | audit my repos, leaked secrets / audit repo, cek kebocoran, secret bocor |
 | `caption-craft` | Social media captions and carousel text, ID/EN | caption, carousel, post text / caption IG, teks carousel |
 | `proofread-id` | Formal Indonesian proofreading | proofread, spelling / cek ejaan, rapikan bahasa, periksa tulisan |
+| `council` | A hard decision pressure-tested by five advisor lenses with anonymous cross-review and one synthesized verdict | decide, should I X or Y, which option, pressure-test / pilih yang mana, minta pendapat kedua, uji keputusan, bantu putuskan |
 
 ## Edge cases
 
