@@ -29,6 +29,17 @@ outputs, not estimates. Where a checker was too naive, that is said.
   council's 23k bought a 416k reduction in build spend, because the
   builder needed 16 steps instead of 31.
 
+The current state, in one table (the test history that produced these
+numbers, including the worse first run, is documented in full below):
+
+| Test | Without the skill | With the skill |
+|---|---|---|
+| Decision suite, 8 cases (current skill) | 0/8 passed, 32,569 tok | **8/8 passed**, 79,703 tok |
+| Full build of one real tool, total pipeline | 1,117,504 tok, quality 10/10 | **724,494 tok (−35.2%)**, quality 9.5/10 |
+
+Read it as a trade: the skill is the more expensive way to *decide*
+and, on this measurement, the cheaper way to *finish*.
+
 ## First run: same model, with and without the skill
 
 GLM-5.3-Flash, all 8 cases, run serially (this is the pre-fix run; the
