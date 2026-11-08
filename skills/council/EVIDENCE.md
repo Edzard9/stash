@@ -132,6 +132,35 @@ just the auto-checker.
   repeatedly, even serially. Their partial numbers are route failures,
   not model scores, and are not quoted here as results.
 
+## Same tokens, leaner text: a compression experiment
+
+Question asked the same day: can the skill get the same quality for
+fewer tokens by compressing its own text (23% fewer words), capping
+each lens at ~120 words, frame-only inputs, explicit token budgets, a
+convergence exit, and one worked example? A prototype was written and
+run on cases 3 and 5, same model, same route:
+
+| Case | Current skill | Lean prototype | Quality |
+|---|---|---|---|
+| 3 (lite) | 11,489 tok, PASS | 11,314 tok | Substance PASS (the form was announced as "Council: lite form", which the announcement regex did not match) |
+| 5 (full + PRD) | 12,654 tok, PASS | 13,039 tok, PASS | PASS, PRD produced, gate reasoning intact |
+| Total | 24,143 | 24,353 (+0.9%) | Held |
+
+Findings, stated plainly:
+
+- Prompt tokens fell exactly as designed (about 470 per call, the
+  shorter skill text). Completion tokens rose by roughly the same
+  amount. In single-call mode the spend is dominated by the model's
+  own generation, which varies more between runs than the saving.
+- **Compressing the instructions did not save tokens.** Quality per
+  token held, which is worth something, but no honest saving can be
+  claimed from this lever in this mode.
+- The two levers that could still cut real spend remain UNTESTED:
+  multi-call mode, where frame-only inputs and the convergence exit
+  remove whole calls (the 50,241-token council above is the target),
+  and the downstream build, where a pinned PRD is supposed to prevent
+  wrong-direction building.
+
 ## What this does not prove
 
 - No downstream saving is measured; that needs a real project run with
