@@ -104,7 +104,9 @@ daily setup.
 
 ### Study: `skills/study/`
 
-Empty shelf, waiting for its first proven skill.
+| Skill | What it does | Proof |
+|---|---|---|
+| `lab-report` | Practicum reports in one fixed house format: identity header, per-point observations each with a one-line "what it means", a short conclusion, the observation table, and Q&A-style evaluation answers. Never invents an observation, copies numbers exactly, and checks the draft against the rubric as text. | The format of the maintainer's real submitted practicum reports; worked example inside the skill, from a real Inter-VLAN Routing practicum |
 
 ### Ops: `skills/ops/`
 
