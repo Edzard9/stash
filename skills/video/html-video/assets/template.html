@@ -73,18 +73,24 @@
   window.__duration = total;
 
   // The contract: draw the exact frame for time t (seconds).
+  // Exactly one scene owns each t: the one whose window [acc, acc+dur)
+  // contains it; the last scene also owns everything past its start.
+  // (An earlier version matched every scene whose window ENDED after t,
+  // so later scenes drew over the current one. Fixed 2026-11-08, found
+  // while building the VLAN demo.)
   window.seek = function (t) {
     let acc = 0;
-    for (const s of SCENES) {
+    SCENES.forEach((s, i) => {
       const el = $(s.id);
-      if (t < acc + s.dur || s === SCENES[SCENES.length - 1]) {
+      const isLast = i === SCENES.length - 1;
+      if (t >= acc && (t < acc + s.dur || isLast)) {
         el.style.display = s.id === 's3' ? 'flex' : 'block';
         s.draw(t - acc);
       } else {
         el.style.display = 'none';
       }
       acc += s.dur;
-    }
+    });
   };
 
   window.seek(0);
