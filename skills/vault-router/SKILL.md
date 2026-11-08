@@ -1,6 +1,6 @@
 ---
 name: vault-router
-description: Entry point for the skill-vault collection. Use FIRST whenever a user makes a task request and any skill-vault skills are installed: read the request, analyze what the actual task and deliverable are, then route to the one matching vault skill and follow it. Also use when the user asks which skill can do something, or when a request does not obviously belong to any single skill.
+description: "Entry point for the skill-vault collection. Use FIRST whenever a user makes a task request and any skill-vault skills are installed: read the request, analyze what the actual task and deliverable are, then route to the one matching vault skill and follow it. Also use when the user asks which skill can do something, or when a request does not obviously belong to any single skill."
 license: MIT
 ---
 
