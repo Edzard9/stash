@@ -213,6 +213,24 @@ Arm B's one miss is housekeeping (service-worker cache version not
 bumped; the PRD never mentioned it). Full method, checklist, and
 caveats: `tests/council/BUILD-AB-RESULTS.md` in this repo.
 
+## How these numbers compare
+
+Published figures from comparable systems, for orientation. The tasks
+and metrics differ from this suite, so this is context, not a ranking.
+
+| System | Cost at the decision stage | Published quality evidence | End-to-end cost incl. the work itself |
+|---|---|---|---|
+| Anthropic multi-agent research (production system) | about 15x the tokens of a plain chat (a single agent: about 4x) | +90.2% over a single agent on an internal research evaluation | Not reported |
+| karpathy/llm-council (25k+ stars) | about 15,000-25,000 tokens per question across 4 models; input tokens 60-100x a direct query | None published (demo project, no evaluation) | Not reported |
+| council-diff (open-source library) | about $0.02-0.04 per deliberation, 5 voices on one model | Calibration (Brier score) tracking over time; no with/without pass rate | Not reported |
+| Multi-agent debate (academic studies) | about 3.4x the tokens of budget-matched repeated voting | +3-7 points over a solo agent; ties or loses to plain voting at equal budget | Not reported |
+| **council (this repo)** | **2.4x the raw baseline, about 10k tokens per decision (multi-model run: 50k)** | **0/8 to 8/8 on an 8-case discipline suite (process checks, one model)** | **-35.2% vs building raw, one real tool, equal quality score** |
+
+Sources: Anthropic engineering, "How we built our multi-agent research
+system" (2025); architectural audit of karpathy/llm-council
+(akillness.github.io); council-diff README; Ferreira et al., "Beyond
+Symmetric Agents" (2026). Figures retrieved 8 Nov 2026.
+
 ## What this does not prove
 
 - The downstream saving is measured on ONE task with ONE run per arm.
