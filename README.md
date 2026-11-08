@@ -93,6 +93,7 @@ in `tests/council/`):
 | Skill | What it does | Proof |
 |---|---|---|
 | `oss-contributor` | Contribute to someone else's repo the way maintainers want: house rules first, a three-layer claim screen (assignees, every comment, related PRs open and closed), mirror the repo's own patterns, honest test reporting that separates baseline failures from regressions, clean PRs, patient follow-up. | Distilled from 11 merged PRs in two days, including a refactor a maintainer then made the enforced lint standard |
+| `small-briefs` | Split a big build into small, self-contained briefs for a coding agent, run them in sequence, and verify each piece's finish line before sending the next. Batch ceilings for bulk work, supervised launches, and honest stall handling. | Born from a documented failure: 100+ tasks in one brief stalled silently, twice in a day; the same work in small briefs finished. Worked example inside, from a real five-brief video build |
 
 Still being stocked: a concise-code skill from the maintainer's own daily
 setup (`lean-code`, fetched from his machine).
