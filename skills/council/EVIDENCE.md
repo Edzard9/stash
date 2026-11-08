@@ -13,9 +13,26 @@ outputs, not estimates. Where a checker was too naive, that is said.
   form, verdict anatomy, PRD gate), then a human read of every case the
   auto-checker left undecided
 
-## The headline: same model, with and without the skill
+## The short version
 
-GLM-5.3-Flash, all 8 cases, run serially:
+- **Decision quality:** after two wording fixes found by the tests
+  below, the skill passes **8/8** structural cases where the raw model
+  passes 0/8. The fixes cost about 40 tokens of text.
+- **Decision cost:** the skill spends about 2.4x the raw model's tokens
+  at decision time (about 9k per decision in this suite). That is the
+  price of structure: labeled assumptions, flip conditions, and a PRD
+  the raw answers never produce.
+- **Total pipeline cost (the number that matters):** in a full build
+  A/B (same task built twice, details in "Build A/B" below), the
+  council + PRD arm used **35.2% fewer tokens end to end** than the
+  raw arm, 724,494 against 1,117,504, at equal measured quality. The
+  council's 23k bought a 416k reduction in build spend, because the
+  builder needed 16 steps instead of 31.
+
+## First run: same model, with and without the skill
+
+GLM-5.3-Flash, all 8 cases, run serially (this is the pre-fix run; the
+regression with the fixed skill is further down):
 
 | Mode | Auto-passed | Human-judged | Total tokens |
 |---|---|---|---|
@@ -26,8 +43,8 @@ The raw mode answered every case; it passed nothing, because the checks
 measure the skill's discipline (announcing a form, framing, labeled
 assumptions, verdict anatomy, the PRD gate), and free-form prose has
 none of it. The skill costs +145% tokens at decision time. That buys
-structure and a reusable PRD; the claimed saving lives downstream in
-the build and is NOT measured by these single calls.
+structure and a reusable PRD. Whether the price pays off downstream
+is a separate question, measured in the Build A/B section below.
 
 ## Side by side: case 7, pricing (PRD forbidden)
 
@@ -161,9 +178,34 @@ Findings, stated plainly:
   and the downstream build, where a pinned PRD is supposed to prevent
   wrong-direction building.
 
+## Build A/B: does the decision cost pay for itself downstream?
+
+One real task built twice from the same repo snapshot, same model,
+same builder (opencode), serial: PerkakasID issue #2, a GPA calculator
+(dynamic course rows, live GPA, optional cumulative mode, bilingual).
+Arm A got the issue text verbatim. Arm B got a council verdict + PRD
+(one council call) and nothing else. Costs are prompt+completion
+tokens from the router's usage log.
+
+| | Arm A (raw) | Arm B (council + PRD) |
+|---|---|---|
+| Council | 0 | 23,134 (1 call) |
+| Build | 1,117,504 (31 calls) | 701,360 (16 calls) |
+| Fix rounds | 0 | 0 |
+| **Total** | **1,117,504** | **724,494 (−35.2%)** |
+
+Quality, same 10-point checklist written before building, functional
+vectors driven in a headless browser: both arms pass every functional
+check (GPA 3.60 on the hand-checked example, cumulative 3.07, add and
+remove rows, AB = 3.5, EN re-labeling, no NaN, no console errors).
+Arm B's one miss is housekeeping (service-worker cache version not
+bumped; the PRD never mentioned it). Full method, checklist, and
+caveats: `tests/council/BUILD-AB-RESULTS.md` in this repo.
+
 ## What this does not prove
 
-- No downstream saving is measured; that needs a real project run with
-  and without the full chain (council, PRD, small briefs, build).
-- One run per case per model. Variance exists; treat scores as a first
-  reading, not a ranking.
+- The downstream saving is measured on ONE task with ONE run per arm.
+  Agentic build costs vary between runs; −35.2% is a first reading,
+  not a constant. The task's issue text was also unusually complete.
+- One run per case per model in the decision suite. Variance exists;
+  treat scores as a first reading, not a ranking.
