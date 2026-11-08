@@ -10,12 +10,23 @@ its place by being used and proven, not by being collected.
 
 ## How to use a skill
 
-Copy the skill's folder into your agent's skills directory, then just ask
-your agent for the thing the skill does. Each skill is self-contained: one
-folder, one `SKILL.md`, copy it without taking anything else from this
-repo.
+One command, with the open [skills CLI](https://skills.sh) (it detects
+your agent: opencode, Claude Code, Codex, Cursor, and 70+ more, and puts
+every skill in the right place):
 
-Install all current skills (opencode):
+```
+npx skills add Edzard9/stash
+```
+
+Add `-g` to install for all your projects instead of only the current
+one, or take a single skill, for example
+`npx skills add Edzard9/stash --skill council`. Then just ask your agent
+for the thing the skill does.
+
+Manual install works too: each skill is self-contained (one folder, one
+`SKILL.md`). Clone this repo and copy the folders you want into your
+agent's skills directory, `~/.config/opencode/skills` for opencode or
+`~/.claude/skills` for Claude Code:
 
 ```
 git clone https://github.com/Edzard9/stash
@@ -23,11 +34,6 @@ mkdir -p ~/.config/opencode/skills
 cp -r stash/skills/vault-router stash/skills/council ~/.config/opencode/skills/
 cp -r stash/skills/video/html-video stash/skills/coding/oss-contributor ~/.config/opencode/skills/
 ```
-
-For Claude Code, replace `~/.config/opencode/skills` with
-`~/.claude/skills`. Want just one skill? Copy only its folder, for
-example `stash/skills/council`. On Windows, use the same folders under
-your user profile (`%USERPROFILE%\.config\opencode\skills` for opencode).
 
 ## Start here: vault-router
 
